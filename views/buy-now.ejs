@@ -1,0 +1,160 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Buy Now</title>
+    <%- include("__bootstrap.ejs") %>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card {
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+        }
+        .form-control:focus {
+            box-shadow: 0 0 5px #ffc107;
+            border-color: #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <%- include("__header.ejs") %>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card p-4 rounded">
+                    <div class="row">
+                        <div class="col-md-5 text-center">
+                            <img src="<%= product.thumbnail %>" alt="Product Image" class="img-fluid rounded" style="height: 300px; object-fit: cover;">
+                        </div>
+                        <div class="col-md-7">
+                            <h3 class="mb-2"><%= product.title %></h3>
+                            <p class="text-muted"><%= product.description %></p>
+                            <h4 class="text-success">₹ <%= product.price %></h4>
+                            <p>Brand: <strong><%= product.brand %></strong></p>
+                            <p>Rating:  <%= product.rating %> / <strong>5</strong></p>
+                            <hr>
+
+                            <form action="/purchase" method="POST">
+                                <input type="hidden" name="productId" value="<%= product.id %>">
+
+                                <div class="mb-3">
+                                    <label class="form-label">Quantity</label>
+                                    <input type="number" name="quantity" class="form-control" value="1" min="1" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Shipping Address</label>
+                                    <textarea class="form-control" name="address" rows="3" placeholder="Enter your full address..." required></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Payment Method</label>
+                                    <select class="form-select" name="payment" required>
+                                        <option value="cod">Cash on Delivery</option>
+                                        <option value="upi">UPI</option>
+                                        <option value="card">Credit/Debit Card</option>
+                                    </select>
+                                </div>
+
+                                <button type="submit" class="btn btn-warning w-100 fw-bold">Buy Now</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include("__footer.ejs") %>
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Purchase</title>
+  <%- include("__bootstrap.ejs") %>
+  <style>
+    body { background-color: #fef9e7; }
+    .purchase-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    .product-img {
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    .form-control:focus {
+      border-color: #ffc107;
+      box-shadow: 0 0 0 0.2rem rgba(255,193,7,0.25);
+    }
+    .btn-warning {
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <%- include("__header.ejs") %>
+
+  <div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+      <div class="col-md-10 purchase-container">
+         Product Summary -->
+        <!-- <div class="row mb-4">
+          <div class="col-md-4 text-center">
+            <img src="<%= product.thumbnail %>" class="img-fluid product-img">
+          </div>
+          <div class="col-md-8 d-flex flex-column justify-content-center">
+            <h4><%= product.title %></h4>
+            <p><%= product.description %></p>
+            <h5 class="text-success"><%= product.price %> Rs.</h5>
+          </div>
+        </div> --> 
+
+        <!-- Billing Form -->
+        <!-- <form action="/purchase" method="POST">
+          <input type="hidden" name="productId" value="<%= product._id %>">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label>Full Name</label>
+              <input type="text" name="name" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label>Email</label>
+              <input type="email" name="email" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label>Phone Number</label>
+              <input type="text" name="phone" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label>Address</label>
+              <input type="text" name="address" class="form-control" required>
+            </div>
+            <div class="col-md-12 mb-3">
+              <label>Payment Method</label>
+              <select name="paymentMethod" class="form-control" required>
+                <option value="">-- Select --</option>
+                <option value="cod">Cash on Delivery</option>
+                <option value="upi">UPI</option>
+                <option value="card">Credit/Debit Card</option>
+              </select>
+            </div>
+          </div>
+          <div class="text-center">
+            <button class="btn btn-warning w-100 mt-3">Place Order</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <%- include("__footer.ejs") %>
+</body>
+</html> -->

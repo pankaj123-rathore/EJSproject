@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Order Success</title>
+  <%- include("__bootstrap.ejs") %>
+  <style>
+    body { background-color: #e8f5e9; font-family: sans-serif; }
+    .success-box {
+      max-width: 600px;
+      margin: 50px auto;
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .success-box h2 { color: #2e7d32; }
+    .success-box p { font-size: 18px; }
+    .btn-home {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #ffc107;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <%- include("__header.ejs") %>
+
+  <div class="success-box">
+    <h2>Thank you, <%= customerName %>!</h2>
+    <p>Your order has been placed successfully.</p>
+    <p><strong>Total Price:</strong> ₹<%= totalPrice %></p>
+    <a href="/" class="btn-home">Back to Home</a>
+  </div>
+
+  <%- include("__footer.ejs") %>
+</body>
+</html>

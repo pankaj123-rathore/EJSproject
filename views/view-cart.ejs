@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Your Cart</title>
+  <%- include("__bootstrap.ejs") %>
+  <style>
+    .cart-container {
+      max-width: 1000px;
+      margin: 50px auto;
+    }
+
+    .cart-card {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      border-radius: 15px;
+      background: #fff;
+    }
+
+    .cart-header {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .cart-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .cart-summary {
+      text-align: right;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .quantity-input {
+      width: 60px;
+      text-align: center;
+    }
+
+    .btn-remove {
+      color: red;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <%- include("__header.ejs") %>
+
+  <div class="container cart-container">
+    <div class="cart-card">
+      <div class="cart-header">Your Shopping Cart</div>
+
+      <% if (cartItems.length > 0) { %>
+        <table class="table table-bordered align-middle">
+          <thead class="table-light text-center">
+            <tr>
+              <th>Product</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Qty</th>
+              <th>Total</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <% let grandTotal = 0; %>
+            <% cartItems.forEach(item => { 
+                let itemTotal = item.price * item.quantity;
+                grandTotal += itemTotal;
+            %>
+              <tr class="cart-item">
+                <td>
+                  <img src="/product_images/<%= item.image %>" alt="<%= item.name %>">
+                </td>
+                <td><%= item.name %></td>
+                <td>₹<%= item.price %></td>
+                <td>
+                  <form action="/cart/update/<%= item.id %>" method="POST" class="d-flex justify-content-center">
+                    <input type="number" name="quantity" value="<%= item.quantity %>" min="1" class="form-control quantity-input me-2">
+                    <button type="submit" class="btn btn-sm btn-outline-secondary">Update</button>
+                  </form>
+                </td>
+                <td>₹<%= itemTotal %></td>
+                <td>
+                  <form action="/cart/remove/<%= item.id %>" method="POST">
+                    <button class="btn-remove" title="Remove Item">🗑️</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+
+        <div class="cart-summary mb-4">Grand Total: ₹<%= grandTotal %></div>
+        <a href="/checkout" class="btn btn-warning checkout-btn">Proceed to Checkout</a>
+
+      <% } else { %>
+        <div class="text-center p-5">
+          <h4>Your cart is empty.</h4>
+          <a href="/" class="btn btn-outline-primary mt-3">Start Shopping</a>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>User Profile</title>
+  <%- include("__bootstrap.ejs") %>
+  <style>
+    body {
+      background: #f8f9fa;
+    }
+
+    .profile-card {
+      max-width: 550px;
+      margin: 60px auto;
+      padding: 30px;
+      border-radius: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .profile-image {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid #ffc107;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .profile-image:hover {
+      transform: scale(1.05);
+    }
+
+    .profile-info h4 {
+      font-weight: bold;
+    }
+
+    .hidden-file-input {
+      display: none;
+    }
+
+    .badge-role {
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 10px;
+      background-color: #17a2b8;
+      color: white;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <%- include("__header.ejs") %>
+
+  <div class="container">
+    <div class="profile-card">
+      
+      <!-- Profile Image Upload -->
+      <form id="profileForm" action="/user/profile" method="POST" enctype="multipart/form-data">
+        <input type="file" name="profile" id="fileInput" class="hidden-file-input" accept="image/*" onchange="submitImage(event)">
+        
+        <img
+          src="/user_profile/<%= currentUser.profile ? currentUser.profile : 'default.png' %>"
+          id="profilePreview"
+          class="profile-image"
+          alt="User Profile"
+          onclick="document.getElementById('fileInput').click();"
+        />
+      </form>
+
+      <!-- User Info -->
+      <div class="badge-role"><%= currentUser.role || 'User' %></div>
+      <div class="profile-info">
+        <h4><%= currentUser.name %></h4>
+        <p><strong>Email:</strong> <%= currentUser.email %></p>
+        <p><strong>Contact:</strong> <%= currentUser.contact %></p>
+      </div>
+
+      <!-- Only View Cart Button -->
+      <div class="btn-group">
+        <a href="/cart" class="btn btn-outline-dark">View Your Cart</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function submitImage(event) {
+      const fileInput = event.target;
+      const preview = document.getElementById('profilePreview');
+      
+      if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          preview.src = e.target.result;
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+
+        // Auto submit the form
+        document.getElementById("profileForm").submit();
+      }
+    }
+  </script>
+</body>
+</html>

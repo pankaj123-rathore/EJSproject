@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Explore BazaarGhar</title>
+  <%- include("__bootstrap.ejs") %>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdfcfb;
+    }
+
+ 
+    .video-hero {
+      height: 420px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .video-hero video {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .video-overlay h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+    }
+
+    .video-overlay p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    .explore-btn {
+      background-color: #ff5722;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .explore-btn:hover {
+      background-color: #e64a19;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 600;
+      text-align: center;
+      margin: 40px 0 20px;
+      color: #222;
+    }
+
+  
+    .product-card {
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+      overflow: hidden;
+      transition: 0.3s ease-in-out;
+      height: 100%;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-card img {
+      min-width: auto;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 10px;
+      color: #333;
+    }
+
+    .price-tag {
+      color: #28a745;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-top: 5px;
+    }
+
+    .btn-view {
+      background-color: #ff5722;
+      color: white;
+      font-weight: 500;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+
+    .btn-view:hover {
+      background-color: #e64a19;
+    }
+  </style>
+</head>
+<body>
+
+<%- include("__header.ejs") %>
+
+<!-- ✅ Hero Video Banner -->
+<section class="video-hero">
+  <video autoplay muted loop playsinline>
+    <source src="/videos/brand-promo.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="video-overlay">
+    <h1>Explore BazaarGhar</h1>
+    <p>Handpicked collections just for you</p>
+    <a href="/product" class="explore-btn">Start Shopping</a>
+  </div>
+</section>
+
+<!-- ✅ Products Grid -->
+<div class="container">
+  <h3 class="section-title">Latest Products</h3>
+  <div class="row g-4">
+    <% for (let product of products) { %>
+      <div class="col-12 col-md-6">
+        <div class="product-card text-center p-3">
+          <img src="<%= product.thumbnail %>" alt="<%= product.title %>">
+          <div class="product-card-title"><%= product.title.substring(0, 25) %></div>
+          <div class="price-tag">₹ <%= product.price %></div>
+          <a href="/product/<%= product.id %>" class="btn btn-view w-100 mt-2">View More</a>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+<%- include("__footer.ejs") %>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
