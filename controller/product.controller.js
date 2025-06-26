@@ -25,8 +25,8 @@ export const addToCart = async (request, response) => {
 
 export const getTrendingProducts = async (request,response,next)=>{
    try{
-     const  trending = await Product.findingTrending(8);
-     return response.render("index.ejs",{trending,isLoggedIn: request.session.isLoggedIn,currentUser: request.session.user})
+     const products = await Product.findingTrending(8);
+     return response.render("explore.ejs",{products,isLoggedIn: request.session.isLoggedIn,currentUser: request.session.user})
    }catch(err){
       console.log(err);
        return response.render("index.ejs", {
@@ -55,7 +55,7 @@ export const getProductById = (request,response,next) => {
     Product.findById(request.params.productId)
     .then(result =>{
        // console.log(result[0]);
-        return response.render("viewmore.ejs",{product:result[0],isLoggedIn: request.session.isLoggedIn,currentUser: request.session.user});
+        return response.render("viewmore.ejs",{products:result[0],isLoggedIn: request.session.isLoggedIn,currentUser: request.session.user});
     })
     .catch(err=>{
         console.log(err);
